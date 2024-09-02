@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
+</head>
+<body>
+    <h1>Articles</h1>
+    <ul id="article-list">
+        <!-- Article items will be dynamically added here -->
+    </ul>
+    <script>
+        fetch('/articles')
+            .then(response => response.json())
+            .then(data => {
+                data.articles.forEach(article => {
+                    const articleItem = document.createElement('li');
+                    articleItem.textContent = `Title: ${article.title}, Content: ${article.content}, Author: ${article.author}`;
+                    document.getElementById('article-list').appendChild(articleItem);
+                });
+            });
+    </script>
+</body>
+</html>

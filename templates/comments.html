@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments</title>
+</head>
+<body>
+    <h1>Comments</h1>
+    <ul id="comment-list">
+        <!-- Comment items will be dynamically added here -->
+    </ul>
+    <script>
+        fetch('/comments')
+            .then(response => response.json())
+            .then(data => {
+                data.comments.forEach(comment => {
+                    const commentItem = document.createElement('li');
+                    commentItem.textContent = `Text: ${comment.text}, Author: ${comment.author}, Article ID: ${comment.article_id}`;
+                    document.getElementById('comment-list').appendChild(commentItem);
+                });
+            });
+    </script>
+</body>
+</html>
